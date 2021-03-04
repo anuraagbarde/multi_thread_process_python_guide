@@ -72,6 +72,7 @@ if __name__ == '__main__':
     # t14.start()
     # t15.start()
 
+    # TODO: add comments on t.join()
 
     # # Basic 0
     # bigForLoop(1)
