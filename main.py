@@ -1,3 +1,5 @@
+# https://youtu.be/18B1pznaU1o | Tutorial: Santiago Basulto - Python Concurrency: from beginner to pro | PyCon 2020
+
 # Use the below for running in powershell
 
 # Measure-Command { python main.py |Out-Default} | Select-Object -Property TotalSeconds
