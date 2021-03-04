@@ -1,10 +1,11 @@
 # Use the below for running in powershell
 
-# Measure-Command { python performance.py |Out-Default} | Select-Object -Property TotalSeconds
+# Measure-Command { python main.py |Out-Default} | Select-Object -Property TotalSeconds
 
 import threading
 from threading import Thread
 
+from multiprocessing import Pool
 
 def bigForLoop(x):
     for i in range(30000000):
@@ -40,6 +41,7 @@ if __name__ == '__main__':
 
     # most basic way to make threads
         # ONLY ONE THREAD CAN USE THE CPU AT ANY GIVEN TIME IN A SINGLE PROCESS, USE THREADING FOR I/O LIKE OPERATIONS
+        # ALSO, THREAD SHARE MEMORY SCOPE WITH THE SCOPE IN WHICH THEY ARE MADE IN (something like var in javascript)
 
     t1 = Thread(target=bigForLoop, args=(1001,)) # or can use >> t1 = MyThread(1001) << and then do >> t1.start() <<
     t2 = Thread(target=bigForLoop, args=(1002,))
@@ -84,15 +86,17 @@ if __name__ == '__main__':
     # bigForLoop(15)
 
 
-from multiprocessing import Pool
 
     # To actually apply multiprocessing and not multi-threading
 
-    # with Pool(processes=4) as localpool1: # The number of Processes will depend on your machine and try to keep it below the number of core your system has. Process are costly, threads aren't.
+    MAX_PROCESSES = 4
+
+    # with Pool(processes=MAX_PROCESSES) as localpool1: # The number of Processes will depend on your machine and try to keep it below the number of core your system has. Process are costly, threads aren't.
 
         # data = [2001,2002,2003,2004,2005]
         # data += [2011, 2012, 2013, 2014, 2015]
         # results = localpool1.map(bigForLoop, data)
+        # print(results)
 
         
         # You can also use localpool1.apply_async(func, arguments) if you want to excecute func only once, input argumets will go as tuples
